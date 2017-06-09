@@ -5,7 +5,6 @@
 #include <fstream>
 #include <string>
 
-#include "common.h"
 #include "data.h"
 //#include "tetelek.h"
 
@@ -19,14 +18,14 @@ class SeqInFile
         int First();
         int Next();
         bool End() const { return sf==abnorm;}
-        Csapat Current() const { return elem; }
+        student Current() const { return elem; }
     private:
         int osszegzes(int []);
         //int szamlalas(int [], int);
         int pointtonote(int);
 
         std::ifstream f;
-        Csapat elem;
+        student elem;
         Status sf;
         std::string sor;
         int read();
