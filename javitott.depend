@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1497059473 source:c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\enor.cpp
+	"enor.h"
+	<iostream>
+	<sstream>
+	<stdlib.h>
+	<cstdlib>
+
+1497051831 c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\enor.h
+	<fstream>
+	<vector>
+	<string>
+	<iostream>
+	"data.h"
+
+1497038674 source:c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\main.cpp
+	<iostream>
+	<stdlib.h>
+	"enor.h"
+	<vector>
+	<string>
+
+1497046635 c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\data.h
+	<vector>
+	<string>
+	<iostream>
+
+1497045700 source:c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\tetelek.cpp
+	"tetelek.h"
+
+1497040135 c:\users\sándor\documents\programozas\beadando\beadando2_ver6\beadando2_awxyhe\javitott\tetelek.h
+	"enor.h"
+	<iostream>
+	<sstream>
+	<stdlib.h>
+	<cstdlib>
+
