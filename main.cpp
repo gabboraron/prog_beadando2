@@ -1,9 +1,12 @@
+#define CATCH_CONFIG_MAIN
+
 #include <iostream>
 #include <stdlib.h>
 #include "enor.h"
 #include <vector>
 #include <string>
 #include "tetelek.h"
+#include "catch.hpp"
 
 using namespace std;
 
@@ -14,53 +17,112 @@ cout <<  "  Az  adatok kozott szokoz(ok) es/vagy tabulator jelek talalhatok. Az 
 */
 
 
-int main()
+TEST_CASE("0.0 eset", "beolvasas teszt")
 {
-    int notes [6] = {0,0,0,0,0,0};
-    string fname;
-    bool hiba;
+    string filename = "0.txt";
+    student diak;
 
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    CHECK(diak.neptun=="VALAMI");
+}
 
-    do{
-        try{
-            hiba=false;
-            cout<<"Add meg a fajl nevet: ";
-            cin>>fname;
-            enor t(fname);
-            bool l=false;
-            int sum,ind;
+TEST_CASE("0.1 eset", "osszegzes teszt")
+{
+    string filename = "0.txt";
+    int sum;
+    student diak;
 
-            t.first();
-            student e; //t.Current();
-            if(t.end())
-            {
-                cout<<"Ures a fajl, nem lehet feldolgozni!\n";
-                hiba=true;
-                break;
-            }
-            for(;!t.end(); t.next())
-            {
-                e = t.Current();
-                sum = osszegzes(e.points);
-                ind = pointtonote(sum);
-                cout<<e.neptun<<" "<<sum<<endl;
-                notes[ind] = notes[ind] + 1;
-            }
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    sum = osszegzes(diak.points);
+    CHECK(sum==21);
+}
 
-            cout<<endl<<"A jegyek darabszama:"<<endl;
-            for(int i = 1; i<6; ++i)
-                cout<<i<<": "<<notes[i]<<endl;
+TEST_CASE("0.2 eset", "pointtonote teszt")
+{
+    string filename = "0.txt";
+    int sum,point;
+    student diak;
 
-        }catch(enor::enorerror err)
-        {
-            if(err==enor::OpenError)
-            {
-                cerr<<fname<<" Nem nyithato meg!\n";
-                hiba=true;
-            }
-        }
-    }while(hiba);
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    sum = osszegzes(diak.points);
+    point = pointtonote(sum);
+    CHECK(point==2);
+}
 
+TEST_CASE("1.0 eset", "beolvasas teszt - tobb sor")
+{
+    string filename = "1.txt";
+    int sum,point;
+    student diak;
 
-    return 0;
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    t.next();
+    diak = t.Current();
+    /*sum = osszegzes(diak.points);
+    point = pointtonote(sum);*/
+    CHECK(diak.neptun == "KORTE");
+}
+
+TEST_CASE("1.1 eset", "osszegzes teszt - tobb sor")
+{
+    string filename = "1.txt";
+    int sum,point;
+    student diak;
+
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    t.next();
+    diak = t.Current();
+    sum = osszegzes(diak.points);
+    /*point = pointtonote(sum);*/
+    CHECK(sum == 11);
+}
+
+TEST_CASE("1.2 eset", "osszegzes teszt - tobb sor")
+{
+    string filename = "1.txt";
+    int sum,point;
+    student diak;
+
+    enor t(filename);
+    t.first();
+    diak = t.Current();
+    t.next();
+    diak = t.Current();
+    sum = osszegzes(diak.points);
+    point = pointtonote(sum);
+
+    CHECK(point == 1);
+}
+
+TEST_CASE("2 eset", "nincs file vege")
+{
+    string filename = "1.txt";
+
+    enor t(filename);
+    t.first();
+    t.next();
+
+    CHECK(t.end() == false);
+}
+
+TEST_CASE("3 eset", "file vege")
+{
+    string filename = "2.txt";
+
+    enor t(filename);
+    t.first();
+    t.next();
+    t.next();
+
+    CHECK(t.end() == true);
 }

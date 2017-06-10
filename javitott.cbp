@@ -33,6 +33,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="1.txt" />
+		<Unit filename="catch.hpp" />
 		<Unit filename="data.h" />
 		<Unit filename="enor.cpp" />
 		<Unit filename="enor.h" />
